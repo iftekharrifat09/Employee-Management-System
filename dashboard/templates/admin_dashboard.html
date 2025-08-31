@@ -61,6 +61,34 @@
     <button style="margin-left: 10px; border-radius:50%; margin-bottom:20px !important;" href="" type="button" class="btn btn-danger mt-1 mb-2 rest_attendance" data-bs-toggle="modal" data-bs-target="#resetAttendanceModal">
         <i class="fa-solid fa-rotate-right"></i>
     </button>
+    <div class="modal fade" id="resetAttendanceModal" tabindex="-1" aria-labelledby="resetAttendanceModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="resetAttendanceModalLabel">Restart Attendance</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                                    
+                    <form id="resetAttendanceForm" method="post" action="{% url 'reset_attendance' %}">
+                        {% csrf_token %}
+                                    
+                        <button type="button" class="btn" style="background-color:red;font-weight:bold;color:white;" id="showInputBtn">Restart Attendance</button>
+                                    
+                        <div id="confirmationBox" style="display: none;">
+                            <label for="confirmInput" style="color:goldenrod; font-size:20px;">Type <strong>'<span style="color:red;">Sure</span>'</strong> to confirm:</label><br>
+                            <input type="text" id="confirmInput" style="width: 90%;margin-top: 10px;margin-bottom: 10px;height: 40px;border-radius: 10px;"><br>
+                            <button class="btn mb-3" style="background-color:red;font-weight:bold;color:white;width:90%;" type="submit" id="submitBtn" disabled>Confirm Restart</button>
+                        </div>
+                    </form>
+                                                            
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="full-div row">
     <div class="col-3 admin-work">
@@ -308,34 +336,7 @@
                     </div>
                 </div>
                 <!-- attendance reset confirmation modal -->
-                <div class="modal fade" id="resetAttendanceModal" tabindex="-1" aria-labelledby="resetAttendanceModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h3 class="modal-title" id="resetAttendanceModalLabel">Restart Attendance</h3>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                    
-                                <form id="resetAttendanceForm" method="post" action="{% url 'reset_attendance' %}">
-                                    {% csrf_token %}
-                                    
-                                    <button type="button" class="btn" style="background-color:red;font-weight:bold;color:white;margin-left:35%;" id="showInputBtn">Restart Attendance</button>
-                                    
-                                    <div id="confirmationBox" style="display: none;">
-                                        <label for="confirmInput" style="color:goldenrod; font-size:20px;">Type <strong>'<span style="color:red;">Sure</span>'</strong> to confirm:</label><br>
-                                        <input type="text" id="confirmInput" style="width: 90%;margin-top: 10px;margin-bottom: 10px;height: 40px;border-radius: 10px;"><br>
-                                        <button class="btn mb-3" style="background-color:red;font-weight:bold;color:white;width:90%;" type="submit" id="submitBtn" disabled>Confirm Restart</button>
-                                    </div>
-                                </form>
-                                                            
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
             
         </div>
         {% endfor %}
